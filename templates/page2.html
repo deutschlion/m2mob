@@ -1,0 +1,21 @@
+<ion-view title="Управление">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <div class="list card">
+            <!-- <div class="item item-divider">Устройство</div> -->
+            <div class="item item-body">
+                <ion-list>
+                    <ion-item class="ismuted" ng-class="{ison: device.online}">{{device.online | isOnline}}</ion-item>
+                    <ion-item class="ismuted" ng-class="{ison: device.guard}">{{device.guard | isGuard}}</ion-item>
+                    <ion-item ng-if="device.alarm" class="isalarm item-button-right">Тревога!
+                      <button class="button button-assertive" ng-click="resetAlarm();">
+                        <i class="icon ion-alert"></i>
+                      </button>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+        <button ng-disabled="!device.online" class="button button-block"
+        ng-class="{'button-balanced': !device.guard, 'button-assertive': device.guard}"
+        ng-click="toggleGuard()">{{device.guard | isGuardButton}}</button>
+    </ion-content>
+</ion-view>
